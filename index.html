@@ -1,1 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereum Lima - Comunidad de Builders & Devs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #f0f0f0;
+            background: #0a0a0f;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 1rem 0;
+            border-bottom: 2px solid #627eea;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .brand h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .brand p {
+            color: #627eea;
+            font-size: 0.9rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: #627eea;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #627eea;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(98, 126, 234, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #627eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #627eea 0%, #4a5bc5 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(98, 126, 234, 0.4);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            color: #627eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #627eea;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #627eea 0%, #4a5bc5 100%);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(98, 126, 234, 0.3);
+        }
+
+        .activity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-card h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .activity-card p {
+            color: #b0b0b0;
+        }
+
+        .faq-section {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid #627eea;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(98, 126, 234, 0.1);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #627eea;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: #b0b0b0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #627eea;
+        }
+
+        .contact-item h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #b0b0b0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #627eea 0%, #4a5bc5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(98, 126, 234, 0.5);
+        }
+
+        .contact-form {
+            background: rgba(26, 26, 46, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #627eea;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid #627eea;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a5bc5;
+            box-shadow: 0 0 10px rgba(98, 126, 234, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #627eea 0%, #4a5bc5 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(98, 126, 234, 0.4);
+        }
+
+        footer {
+            background: #0a0a0f;
+            border-top: 2px solid #627eea;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: #b0b0b0;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #627eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">⟠</div>
+                    <div class="brand">
+                        <h1>Ethereum Lima</h1>
+                        <p>Builders & Developers Community</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#actividades">Actividades</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Construyendo el Futuro de Web3 en Perú</h2>
+                <p>Únete a la comunidad más activa de desarrolladores y builders de Ethereum en Lima. Aprende, construye y conecta con otros apasionados de la tecnología blockchain.</p>
+                <a href="#contacto" class="cta-button">Únete a la Comunidad</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre Nosotros</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>¿Quiénes Somos?</h3>
+                    <p>Somos una comunidad de desarrolladores, emprendedores y entusiastas de Ethereum en Lima, dedicados a impulsar la adopción de tecnologías blockchain en Perú y América Latina.</p>
+                    <p>Organizamos meetups, workshops, hackathons y eventos educativos para fomentar el aprendizaje y la colaboración en el ecosistema Web3.</p>
+                    <p>Desde proyectos DeFi hasta NFTs, DAOs y aplicaciones descentralizadas, nuestra comunidad está en la vanguardia de la innovación blockchain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="actividades">
+        <div class="container">
+            <h2>Nuestras Actividades</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-icon">🎓</div>
+                    <h3>Workshops Técnicos</h3>
+                    <p>Sesiones prácticas sobre Solidity, Web3.js, Hardhat, y las últimas tecnologías del ecosistema Ethereum.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🤝</div>
+                    <h3>Meetups Mensuales</h3>
+                    <p>Encuentros presenciales para networking, charlas técnicas y compartir experiencias en el desarrollo blockchain.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">💻</div>
+                    <h3>Hackathons</h3>
+                    <p>Competencias de programación donde construimos proyectos innovadores en 48 horas con premios y reconocimientos.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🎯</div>
+                    <h3>Study Groups</h3>
+                    <p>Grupos de estudio colaborativo para aprender juntos sobre smart contracts, DeFi, NFTs y más.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🚀</div>
+                    <h3>Proyectos Comunitarios</h3>
+                    <p>Desarrollo de dApps y herramientas open-source que benefician a toda la comunidad Web3.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-icon">🌐</div>
+                    <h3>Comunidad Online</h3>
+                    <p>Canales activos en Discord y Telegram donde compartimos recursos, resolvemos dudas y colaboramos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Necesito experiencia previa en blockchain para unirme?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>¡No! Nuestra comunidad está abierta a todos los niveles, desde principiantes hasta expertos. Organizamos eventos específicos para diferentes niveles de experiencia y siempre hay miembros dispuestos a ayudar a los que están comenzando.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Los eventos son presenciales o virtuales?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Realizamos ambos tipos de eventos. Tenemos meetups presenciales en Lima y también workshops y charlas virtuales para que todos puedan participar sin importar su ubicación.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Hay algún costo para unirse a la comunidad?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, unirse a nuestra comunidad es completamente gratuito. La mayoría de nuestros eventos también son gratuitos, aunque algunos workshops especializados pueden tener un costo simbólico para cubrir gastos de organización.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué necesito para empezar a desarrollar en Ethereum?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Necesitas conocimientos básicos de programación (JavaScript es ideal), una computadora y ganas de aprender. En nuestros workshops te enseñamos desde cómo configurar tu entorno de desarrollo hasta cómo escribir y desplegar tu primer smart contract.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo puedo contribuir a la comunidad?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Hay muchas formas: compartiendo tu conocimiento en meetups, ayudando a otros miembros en Discord, contribuyendo a proyectos open-source, organizando eventos, o simplemente siendo activo y participativo en la comunidad. ¡Todas las contribuciones son valiosas!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Organizan hackathons y tienen premios?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, organizamos hackathons regularmente con premios monetarios y oportunidades de financiamiento para los proyectos ganadores. También participamos en hackathons internacionales como equipo, y conectamos a los builders con oportunidades de grants y aceleración.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2>Únete a Nosotros</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <h3>Discord</h3>
+                            <p>Únete a nuestra comunidad activa 24/7 donde compartimos conocimientos y resolvemos dudas.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-btn" title="Discord">💬</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h3>Redes Sociales</h3>
+                            <p>Síguenos en nuestras redes para estar al día con eventos y noticias del ecosistema.</p>
+                            <div class="social-links">
+                                <a href="https://x.com/EthereumLima" class="social-btn" title="Twitter">🐦</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>contacto@ethlima.org</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3>Ubicación</h3>
+                            <p>Lima, Perú</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="color: #fff; margin-bottom: 1.5rem;">Envíanos un Mensaje</h3>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interes">Área de Interés</label>
+                            <input type="text" id="interes" name="interes" placeholder="Ej: DeFi, NFTs, Smart Contracts">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ethereum Lima Community. Todos los derechos reservados.</p>
+            <p>Construyendo el futuro descentralizado desde Perú 🇵🇪</p>
+            <div class="footer-links">
+                <a href="#sobre">Sobre Nosotros</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="#contacto">Contacto</a>
+                <a href="#">Código de Conducta</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto. Mientras tanto, únete a nuestro Discord para conectar con la comunidad.');
+            e.target.reset();
+        }
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Cerrar todos los items
+                faqItems.forEach(i => i.classList.remove('active'));
+                
+                // Abrir el actual si no estaba activo
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
