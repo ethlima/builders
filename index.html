@@ -650,7 +650,7 @@
                             <li><a href="#actividades">Actividades</a></li>
                             <li><a href="#faq">FAQ</a></li>
                             <li><a href="#contacto">Contacto</a></li>
-                            <li><a href="" class="cta-nav">Ecosistema</a></li>
+                            <li><a href="ecosistema.html" class="cta-nav">Ecosistema</a></li>
                         </ul>
                     </nav>
                     
@@ -857,3 +857,76 @@
                         <div class="form-group">
                             <label for="mensaje">Mensaje</label>
                             <textarea id="mensaje" name="mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ethereum Lima Community. Todos los derechos reservados.</p>
+            <p>Construyendo el futuro descentralizado desde Perú 🇵🇪</p>
+            <div class="footer-links">
+                <a href="#sobre">Sobre Nosotros</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="#contacto">Contacto</a>
+                <a href="#">Código de Conducta</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = newTheme === 'light' ? '☀️' : '🌙';
+        }
+
+        // Cargar tema guardado
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const icon = document.querySelector('.theme-icon');
+            icon.textContent = savedTheme === 'light' ? '☀️' : '🌙';
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('mobile-open');
+        }
+
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto. Mientras tanto, únete a nuestro Discord para conectar con la comunidad.');
+            e.target.reset();
+        }
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Inicializar
+        loadTheme();
+    </script>
+</body>
+</html>
